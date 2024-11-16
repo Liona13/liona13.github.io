@@ -493,6 +493,131 @@
 				0% { transform: translateX(-100%); }
 				100% { transform: translateX(100%); }
 			}
+
+			/* Resume and Experience section hover effects */
+			.resume-section, .experience-item {
+				transition: all 0.3s ease;
+				padding: 1.5rem;
+				border-radius: 4px;
+				margin-bottom: 1.5rem;
+				background: rgba(255, 255, 255, 0.02);
+				border: 1px solid rgba(255, 255, 255, 0.05);
+			}
+
+			.resume-section:hover, .experience-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+				background: rgba(255, 255, 255, 0.05);
+			}
+
+			/* Section header animations */
+			.resume-section h3, .experience-item h3, .experience-item h4 {
+				position: relative;
+				display: inline-block;
+				margin-bottom: 1rem;
+			}
+
+			.resume-section h3::after, .experience-item h3::after, .experience-item h4::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 2px;
+				bottom: -4px;
+				left: 0;
+				background-color: #64ffda;
+				transition: width 0.3s ease;
+			}
+
+			.resume-section:hover h3::after, 
+			.experience-item:hover h3::after,
+			.experience-item:hover h4::after {
+				width: 100%;
+			}
+
+			/* List item animations */
+			.resume-section ul li, .experience-item ul li {
+				transition: transform 0.2s ease, padding-left 0.2s ease;
+				position: relative;
+			}
+
+			.resume-section ul li:hover, .experience-item ul li:hover {
+				transform: translateX(10px);
+				padding-left: 5px;
+			}
+
+			/* Meta text styling */
+			.meta {
+				color: #64ffda;
+				font-size: 0.9em;
+				margin-bottom: 1rem;
+			}
+
+			/* Education item styling */
+			.education-item {
+				transition: all 0.3s ease;
+				padding: 1.5rem;
+				border-radius: 4px;
+				margin-bottom: 1.5rem;
+				background: rgba(255, 255, 255, 0.02);
+				border: 1px solid rgba(255, 255, 255, 0.05);
+			}
+
+			.education-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+				background: rgba(255, 255, 255, 0.05);
+			}
+
+			/* Simpler animations with better browser support */
+			.project-item,
+			.skill-category,
+			.resume-section,
+			.experience-item {
+				opacity: 0;
+				transform: translateY(20px);
+				animation: fadeInUp 0.6s ease-out forwards;
+			}
+
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			/* Hover effects without transforms */
+			.project-item:hover,
+			.skill-category:hover,
+			.resume-section:hover,
+			.experience-item:hover {
+				background: rgba(255, 255, 255, 0.05);
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			/* Simpler link animations */
+			nav ul li a::after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: #64ffda;
+				transition: width 0.3s ease;
+			}
+
+			nav ul li a:hover::after {
+				width: 100%;
+			}
+
+			/* Add animation trigger class */
+			.animate-in {
+				animation: fadeInUp 0.6s ease-out forwards;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -902,6 +1027,27 @@
 						});
 						targetArticle.style.display = 'block';
 					}
+				});
+			});
+		</script>
+
+		<!-- Add this script just before closing body tag -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Add animation classes when content becomes visible
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('animate-in');
+						}
+					});
+				}, {
+					threshold: 0.1
+				});
+
+				// Observe all animatable elements
+				document.querySelectorAll('.project-item, .skill-category, .resume-section, .experience-item').forEach((el) => {
+					observer.observe(el);
 				});
 			});
 		</script>
