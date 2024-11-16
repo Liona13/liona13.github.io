@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Block access to specific folders (if needed)
+# Disallow: /private/
+# Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://liona13.github.io/sitemap.xml
