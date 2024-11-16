@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Educational Technology Tools Project Documentation - Anil Gupta</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../../assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+        
+        <style>
+            /* Dark mode support */
+            :root {
+                --bg-color: #ffffff;
+                --text-color: #1b1f22;
+                --surface-color: rgba(27, 31, 34, 0.85);
+            }
+
+            [data-theme="dark"] {
+                --bg-color: #1b1f22;
+                --text-color: #ffffff;
+                --surface-color: rgba(255, 255, 255, 0.05);
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+            }
+
+            .project-documentation {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            .project-documentation h1 {
+                color: #64ffda;
+                margin-bottom: 2rem;
+            }
+
+            .project-documentation h2 {
+                color: #ffffff;
+                margin-top: 2rem;
+            }
+
+            .project-documentation p {
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .project-documentation ul {
+                margin-left: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .back-button {
+                margin-bottom: 2rem;
+            }
+
+            /* Dark mode toggle button */
+            #dark-mode-toggle {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                border: 1px solid var(--text-color);
+                border-radius: 50%;
+                background: transparent;
+                cursor: pointer;
+                z-index: 10000;
+                padding: 0.5rem;
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+        <!-- Add dark mode toggle button -->
+        <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+            <svg class="cs-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480" xml:space="preserve"><path d="M459.782 347.328c-4.288-5.28-11.488-7.232-17.824-4.96-17.76 6.368-37.024 9.632-57.312 9.632-97.056 0-176-78.976-176-176 0-58.4 28.832-112.768 77.12-145.472 5.472-3.712 8.096-10.4 6.624-16.832S285.638 2.4 279.078 1.44C271.59.352 264.134 0 256.646 0c-132.352 0-240 107.648-240 240s107.648 240 240 240c84 0 160.416-42.688 204.352-114.176 3.552-5.792 3.04-13.184-1.216-18.496z"/></svg>
+        </button>
+
+        <div id="wrapper">
+            <div class="project-documentation">
+                <div class="back-button">
+                    <a href="../../index.html#projects" class="button">← Back to Projects</a>
+                </div>
+
+                <h1>Educational Technology Tools</h1>
+                
+                <h2>Project Overview</h2>
+                <p>Development of Python-based tools and applications to enhance mathematics education and automate teaching tasks, making learning more interactive and efficient.</p>
+
+                <h2>Technical Details</h2>
+                <h3>Key Components</h3>
+                <ul>
+                    <li>Interactive visualization tools</li>
+                    <li>Automated grading system</li>
+                    <li>Progress tracking dashboard</li>
+                    <li>Data analysis modules</li>
+                </ul>
+
+                <h2>Implementation</h2>
+                <h3>Development Stack</h3>
+                <ul>
+                    <li>Python (NumPy, Pandas, Matplotlib)</li>
+                    <li>Web technologies (HTML, CSS, JavaScript)</li>
+                    <li>Data visualization libraries</li>
+                    <li>Educational APIs integration</li>
+                </ul>
+
+                <h2>Features & Benefits</h2>
+                <ul>
+                    <li>Real-time student progress monitoring</li>
+                    <li>Automated assessment and feedback</li>
+                    <li>Interactive learning materials</li>
+                    <li>Performance analytics</li>
+                </ul>
+
+                <h2>Future Development</h2>
+                <ul>
+                    <li>Machine learning integration</li>
+                    <li>Mobile app development</li>
+                    <li>Advanced analytics features</li>
+                    <li>Collaborative learning tools</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Add dark mode script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const html = document.documentElement;
+                
+                function enableDarkMode() {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+
+                function disableDarkMode() {
+                    html.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+
+                // Check user preference
+                const theme = localStorage.getItem('theme');
+                if (theme) {
+                    theme === 'dark' ? enableDarkMode() : disableDarkMode();
+                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    enableDarkMode();
+                }
+
+                // Toggle button event listener
+                document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+                    html.getAttribute('data-theme') === 'dark' ? disableDarkMode() : enableDarkMode();
+                });
+            });
+        </script>
+    </body>
+</html> 

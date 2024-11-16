@@ -760,28 +760,28 @@
 			}
 
 			.blog-post::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 2px;
-				background: #64ffda;
-				transform: scaleX(0);
-				transform-origin: right;
-				transition: transform 0.3s ease;
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 2px;
+					background: #64ffda;
+					transform: scaleX(0);
+					transform-origin: right;
+					transition: transform 0.3s ease;
 			}
 
 			.blog-post:hover::after {
-				transform: scaleX(1);
-				transform-origin: left;
+					transform: scaleX(1);
+					transform-origin: left;
 			}
 
 			/* Blog post animations */
 			.blog-post {
-				opacity: 0;
-				transform: translateY(20px);
-				animation: fadeInUp 0.6s ease-out forwards;
+					opacity: 0;
+					transform: translateY(20px);
+					animation: fadeInUp 0.6s ease-out forwards;
 			}
 
 			.blog-post:nth-child(1) { animation-delay: 0.2s; }
@@ -790,21 +790,21 @@
 
 			/* Loading spinner for blog posts */
 			.blog-post .loading-spinner {
-				display: inline-block;
-				width: 16px;
-				height: 16px;
-				border: 2px solid rgba(255, 255, 255, 0.3);
-				border-radius: 50%;
-				border-top-color: #fff;
-				animation: spin 0.8s linear infinite;
-				margin-left: 8px;
-				vertical-align: middle;
+					display: inline-block;
+					width: 16px;
+					height: 16px;
+					border: 2px solid rgba(255, 255, 255, 0.3);
+					border-radius: 50%;
+					border-top-color: #fff;
+					animation: spin 0.8s linear infinite;
+					margin-left: 8px;
+					vertical-align: middle;
 			}
 
 			/* Button loading state */
 			.blog-post .button.loading {
-				opacity: 0.7;
-				cursor: wait;
+					opacity: 0.7;
+					cursor: wait;
 			}
 		</style>
 
@@ -842,6 +842,14 @@
 				100% { transform: rotate(360deg); }
 			}
 		</style>
+
+		<!-- Add these preload tags right after your existing meta tags -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preload" href="assets/css/main.css" as="style">
+		<link rel="preload" href="assets/js/main.js" as="script">
+		<link rel="preload" href="images/optimized/profile.jpg" as="image">
+		<link rel="preload" href="images/optimized/bg.jpg" as="image">
 	</head>
 	<body class="is-preload">
 		<!-- Google Tag Manager (noscript) -->
@@ -888,7 +896,7 @@
 					<h2 class="major">About</h2>
 					<span class="image main" style="width: 120px !important; max-width: 120px !important; margin: 1rem auto !important; display: block !important;">
 						<img 
-							src="images/profile.jpg" 
+							src="images/optimized/profile.jpg" 
 							alt="Anil Gupta" 
 							style="width: 120px !important; height: 120px !important; object-fit: cover !important; border-radius: 50% !important; margin: 0 !important;"
 						/>
@@ -904,50 +912,89 @@
 				<!-- Projects -->
 				<article id="projects">
 					<h2 class="major">Projects</h2>
+					
+					<!-- Rail-Gun Project -->
 					<div class="project-item">
-						<h3>Rail-Gun Assisted Orbital Launch System (University Project, 2018)</h3>
-						<p>Final year engineering project focused on innovative space launch technology.</p>
+						<h3>Rail-Gun Assisted Orbital Launch System</h3>
+						<p class="meta">Final Year Project | 2018</p>
 						<div class="project-details">
-							<h4>Project Overview:</h4>
-							<p>Developed a conceptual design for a hybrid launch system combining electromagnetic rail-gun technology 
-							with traditional rocket propulsion to reduce launch costs and improve efficiency.</p>
+							<p>A conceptual design combining electromagnetic rail-gun technology with traditional rocket propulsion.</p>
 							
-							<h4>Key Contributions:</h4>
+							<h4>Key Features:</h4>
 							<ul>
-								<li>Conducted theoretical analysis of electromagnetic acceleration systems</li>
-								<li>Calculated potential cost savings and efficiency improvements</li>
-								<li>Developed mathematical models for trajectory optimization</li>
-								<li>Created comprehensive project documentation and presentations</li>
+								<li>Electromagnetic acceleration system design</li>
+								<li>Trajectory optimization calculations</li>
+								<li>Cost-efficiency analysis</li>
+								<li>Environmental impact assessment</li>
 							</ul>
+
+							<h4>Technologies Used:</h4>
+							<ul>
+								<li>MATLAB for trajectory simulations</li>
+								<li>Python for data analysis</li>
+								<li>CAD software for design visualization</li>
+							</ul>
+							
+							<div class="project-links">
+								<a href="#project-docs" class="button" data-doc="railgun-project.html">View Documentation</a>
+							</div>
 						</div>
 					</div>
 
+					<!-- Flapping Wing Project -->
 					<div class="project-item">
-						<h3>Flapping Wing Micro-Aerial Vehicle (University Project, 2016)</h3>
-						<p>Design and fabrication project exploring bio-inspired flight mechanisms.</p>
+						<h3>Flapping Wing Micro-Aerial Vehicle</h3>
+						<p class="meta">Research Project | 2016</p>
 						<div class="project-details">
-							<h4>Project Overview:</h4>
-							<p>Researched and developed a small-scale flying device inspired by bird wing mechanics, 
-							focusing on efficient flight characteristics for surveillance applications.</p>
+							<p>Research and development of a bio-inspired micro-aerial vehicle using flapping wing mechanics.</p>
 							
-							<h4>Key Achievements:</h4>
+							<h4>Key Features:</h4>
 							<ul>
-								<li>Analyzed bird flight mechanics and wing design principles</li>
-								<li>Created design specifications and technical drawings</li>
-								<li>Developed prototype using available materials</li>
-								<li>Conducted basic aerodynamic analysis</li>
+								<li>Bio-inspired wing design</li>
+								<li>Lightweight structure optimization</li>
+								<li>Flight control system development</li>
+								<li>Performance testing and analysis</li>
 							</ul>
+
+							<h4>Technologies Used:</h4>
+							<ul>
+								<li>Computational fluid dynamics</li>
+								<li>3D modeling software</li>
+								<li>Data acquisition systems</li>
+							</ul>
+							
+							<div class="project-links">
+								<a href="#project-docs" class="button" data-doc="flapping-wing-project.html">View Documentation</a>
+							</div>
 						</div>
 					</div>
 
+					<!-- Educational Technology Tools -->
 					<div class="project-item">
-						<h3>Current Projects</h3>
-						<p>Currently developing:</p>
-						<ul>
-							<li>Python-based data analysis tools</li>
-							<li>Automation scripts for educational applications</li>
-							<li>Personal portfolio website (This site)</li>
-						</ul>
+						<h3>Educational Technology Tools</h3>
+						<p class="meta">Ongoing</p>
+						<div class="project-details">
+							<p>Developing Python-based tools to enhance mathematics education and automate teaching tasks.</p>
+							
+							<h4>Key Features:</h4>
+							<ul>
+								<li>Interactive math visualization tools</li>
+								<li>Automated grading systems</li>
+								<li>Student progress tracking</li>
+								<li>Educational data analysis</li>
+							</ul>
+
+							<h4>Technologies Used:</h4>
+							<ul>
+								<li>Python (NumPy, Pandas, Matplotlib)</li>
+								<li>Web technologies (HTML, CSS, JavaScript)</li>
+								<li>Data visualization libraries</li>
+							</ul>
+							
+							<div class="project-links">
+								<a href="#project-docs" class="button" data-doc="edtech-tools-project.html">View Documentation</a>
+							</div>
+						</div>
 					</div>
 				</article>
 
@@ -957,25 +1004,46 @@
 					<div class="skills-grid">
 						<div class="skill-category">
 							<h3>Technical Skills</h3>
-							<ul>
-								<li>Python Programming</li>
-								<li>Data Analysis</li>
-								<li>Aerospace Engineering</li>
-								<li>Technical Writing</li>
-								<li>Project Documentation</li>
-							</ul>
+							<div class="skill-item">
+								<span class="skill-name">Python Programming</span>
+								<div class="skill-bar">
+									<div class="skill-progress" data-progress="90"></div>
+								</div>
+								<span class="skill-percentage">90%</span>
+							</div>
+							<div class="skill-item">
+								<span class="skill-name">Data Analysis</span>
+								<div class="skill-bar">
+									<div class="skill-progress" data-progress="85"></div>
+								</div>
+								<span class="skill-percentage">85%</span>
+							</div>
+							<div class="skill-item">
+								<span class="skill-name">Mathematics</span>
+								<div class="skill-bar">
+									<div class="skill-progress" data-progress="95"></div>
+								</div>
+								<span class="skill-percentage">95%</span>
+							</div>
+							<div class="skill-item">
+								<span class="skill-name">Technical Writing</span>
+								<div class="skill-bar">
+									<div class="skill-progress" data-progress="80"></div>
+								</div>
+								<span class="skill-percentage">80%</span>
+							</div>
 						</div>
 						<div class="skill-category">
 							<h3>Certifications</h3>
 							<ul>
-								<li>Introduction to Programming Using Python (Kaggle, 2024)</li>
-								<li>Python Programming (Kaggle, 2024)</li>
+								<li>Introduction to Programming Using Python</li>
+								<li>Python Programming</li>
 							</ul>
 						</div>
 						<div class="skill-category">
 							<h3>Languages</h3>
 							<ul>
-								<li>English (Professional)</li>
+								<li>English (Fluent)</li>
 								<li>Hindi (Native)</li>
 								<li>Nepali (Native)</li>
 							</ul>
@@ -1111,7 +1179,6 @@
 				<!-- Blog -->
 				<article id="blog">
 					<h2 class="major">Blog</h2>
-					<div class="close">Close</div>
 					
 					<!-- Blog Post 1 -->
 					<div class="blog-post">
@@ -1119,7 +1186,7 @@
 						<p class="meta">March 19, 2024</p>
 						<p>A comprehensive guide to using Python for data analysis, including key libraries like Pandas, NumPy, and Matplotlib. Learn how to manipulate data, create visualizations, and perform analysis.</p>
 						<ul class="actions">
-							<li><a href="blog/posts/python-data-analysis.html" class="button" target="_blank">Read More</a></li>
+							<li><a href="#blog-content" class="button" data-blog="python-data-analysis.html">Read More</a></li>
 						</ul>
 					</div>
 
@@ -1129,7 +1196,7 @@
 						<p class="meta">March 15, 2024</p>
 						<p>Exploring how aerospace engineering principles can enhance STEM education. From flight mechanics to aerodynamics, discover practical applications in teaching.</p>
 						<ul class="actions">
-							<li><a href="blog/posts/aerospace-education.html" class="button" target="_blank">Read More</a></li>
+							<li><a href="#blog-content" class="button" data-blog="aerospace-education.html">Read More</a></li>
 						</ul>
 					</div>
 
@@ -1139,9 +1206,17 @@
 						<p class="meta">March 10, 2024</p>
 						<p>Modern approaches to mathematics education using technology and programming. Learn how to make complex concepts more accessible through interactive tools.</p>
 						<ul class="actions">
-							<li><a href="blog/posts/teaching-with-tech.html" class="button" target="_blank">Read More</a></li>
+							<li><a href="#blog-content" class="button" data-blog="teaching-with-tech.html">Read More</a></li>
 						</ul>
 					</div>
+				</article>
+
+				<!-- Add this new article section for blog content -->
+				<article id="blog-content" style="display: none;">
+					<div class="back-button">
+						<a href="#blog" class="button">← Back to Blog</a>
+					</div>
+					<div id="blog-post-content"></div>
 				</article>
 
 			</div>
@@ -1154,7 +1229,7 @@
 		</div>
 
 		<!-- BG -->
-		<div id="bg"></div>
+		<div id="bg" style="background-image: url('images/optimized/bg.jpg')"></div>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
@@ -1191,33 +1266,33 @@
 				
 				// Dark mode functions
 				function enableDarkMode() {
-					html.setAttribute('data-theme', 'dark');
-					localStorage.setItem('theme', 'dark');
-					
-					// Update button icons
-					document.querySelector('.cs-moon').style.display = 'none';
-					document.querySelector('.cs-sun').style.display = 'block';
+						html.setAttribute('data-theme', 'dark');
+						localStorage.setItem('theme', 'dark');
+						
+						// Update button icons
+						document.querySelector('.cs-moon').style.display = 'none';
+						document.querySelector('.cs-sun').style.display = 'block';
 				}
 
 				function disableDarkMode() {
-					html.setAttribute('data-theme', 'light');
-					localStorage.setItem('theme', 'light');
-					
-					// Update button icons
-					document.querySelector('.cs-moon').style.display = 'block';
-					document.querySelector('.cs-sun').style.display = 'none';
+						html.setAttribute('data-theme', 'light');
+						localStorage.setItem('theme', 'light');
+						
+						// Update button icons
+						document.querySelector('.cs-moon').style.display = 'block';
+						document.querySelector('.cs-sun').style.display = 'none';
 				}
 
 				// Check user preference
 				function detectColorScheme() {
-					const theme = localStorage.getItem('theme');
-					if (theme) {
-						theme === 'dark' ? enableDarkMode() : disableDarkMode();
-					} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-						enableDarkMode();
-					} else {
-						disableDarkMode();
-					}
+						const theme = localStorage.getItem('theme');
+						if (theme) {
+								theme === 'dark' ? enableDarkMode() : disableDarkMode();
+						} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+								enableDarkMode();
+						} else {
+								disableDarkMode();
+						}
 				}
 
 				// Run on page load
@@ -1226,9 +1301,9 @@
 				// Toggle button event listener
 				const darkModeToggle = document.getElementById('dark-mode-toggle');
 				if (darkModeToggle) {
-					darkModeToggle.addEventListener('click', () => {
-						html.getAttribute('data-theme') === 'dark' ? disableDarkMode() : enableDarkMode();
-					});
+						darkModeToggle.addEventListener('click', () => {
+								html.getAttribute('data-theme') === 'dark' ? disableDarkMode() : enableDarkMode();
+						});
 				}
 
 				// Listen for system theme changes
@@ -1242,51 +1317,51 @@
 				// Get all articles and hide them initially
 				const articles = document.querySelectorAll('#main article');
 				articles.forEach(article => {
-					article.style.display = 'none';
+						article.style.display = 'none';
 				});
 
 				// Show initial article
 				const initialHash = window.location.hash || '#about';
 				const initialArticle = document.querySelector(initialHash);
 				if (initialArticle) {
-					initialArticle.style.display = 'block';
+						initialArticle.style.display = 'block';
 				}
 
 				// Handle navigation clicks
 				document.querySelectorAll('nav a').forEach(link => {
 						link.addEventListener('click', function(e) {
-							e.preventDefault();
-							
-							// Get target article
-							const targetId = this.getAttribute('href');
-							const targetArticle = document.querySelector(targetId);
-							
-							if (targetArticle) {
-								// Hide all articles first
-								articles.forEach(article => {
-									article.style.display = 'none';
-								});
-
-								// Show target article immediately
-								targetArticle.style.display = 'block';
+								e.preventDefault();
 								
-								// Update URL
-								window.location.hash = targetId;
-							}
+								// Get target article
+								const targetId = this.getAttribute('href');
+								const targetArticle = document.querySelector(targetId);
+								
+								if (targetArticle) {
+										// Hide all articles first
+										articles.forEach(article => {
+												article.style.display = 'none';
+										});
+
+										// Show target article immediately
+										targetArticle.style.display = 'block';
+										
+										// Update URL
+										window.location.hash = targetId;
+								}
 						});
 				});
 
 				// Handle direct URL navigation
 				window.addEventListener('hashchange', function() {
-					const hash = window.location.hash;
-					const targetArticle = document.querySelector(hash);
-					
-					if (targetArticle) {
-						articles.forEach(article => {
-							article.style.display = 'none';
-						});
-						targetArticle.style.display = 'block';
-					}
+						const hash = window.location.hash;
+						const targetArticle = document.querySelector(hash);
+						
+						if (targetArticle) {
+								articles.forEach(article => {
+										article.style.display = 'none';
+								});
+								targetArticle.style.display = 'block';
+						}
 				});
 			});
 		</script>
@@ -1296,224 +1371,331 @@
 			document.addEventListener('DOMContentLoaded', function() {
 				// Add animation classes when content becomes visible
 				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('animate-in');
-						}
-					});
+						entries.forEach(entry => {
+								if (entry.isIntersecting) {
+										entry.target.classList.add('animate-in');
+								}
+						});
 				}, {
-					threshold: 0.1
+						threshold: 0.1
 				});
 
 				// Observe all animatable elements
 				document.querySelectorAll('.project-item, .skill-category, .resume-section, .experience-item').forEach((el) => {
-					observer.observe(el);
+						observer.observe(el);
 				});
 			});
 		</script>
 
 		<!-- Add this right after opening body tag -->
 		<div class="loading">
-			<div class="loading-spinner"></div>
-			<div class="loading-text">Loading...</div>
+				<div class="loading-spinner"></div>
+				<div class="loading-text">Loading...</div>
 		</div>
 
 		<!-- Add this style in the head section -->
 		<style>
-			/* Loading screen styles */
-			.loading {
-				position: fixed;
-				top: 0;
-				left: 0;
+				/* Loading screen styles */
+				.loading {
+						position: fixed;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						background: rgba(27, 31, 34, 0.98);
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						z-index: 10000;
+						transition: opacity 0.5s ease-out;
+				}
+
+				.loading-spinner {
+						width: 60px;
+						height: 60px;
+						border: 4px solid rgba(255, 255, 255, 0.1);
+						border-left-color: #64ffda;
+						border-radius: 50%;
+						animation: spin 1s linear infinite;
+				}
+
+				.loading-text {
+						color: #ffffff;
+						margin-top: 1rem;
+						font-size: 1.2rem;
+						letter-spacing: 0.2rem;
+						animation: pulse 1.5s ease-in-out infinite;
+				}
+
+				.loading.fade-out {
+						opacity: 0;
+						pointer-events: none;
+				}
+
+				@keyframes spin {
+						to { transform: rotate(360deg); }
+				}
+
+				@keyframes pulse {
+						0%, 100% { opacity: 0.5; }
+						50% { opacity: 1; }
+				}
+		</style>
+
+		<!-- Add this script before closing body tag -->
+		<script>
+				window.addEventListener('load', function() {
+						const loader = document.querySelector('.loading');
+						loader.classList.add('fade-out');
+						
+						setTimeout(() => {
+								loader.style.display = 'none';
+						}, 500);
+				});
+		</script>
+
+		<!-- Replace the existing blog handling script with this one -->
+		<script>
+				document.addEventListener('DOMContentLoaded', function() {
+						// Handle blog post links
+						document.querySelectorAll('[data-blog]').forEach(link => {
+								link.addEventListener('click', function(e) {
+										e.preventDefault();
+										const blogFile = this.getAttribute('data-blog');
+										
+										// Hide all articles
+										document.querySelectorAll('#main article').forEach(article => {
+												article.style.display = 'none';
+										});
+
+										// Show blog content article
+										const blogContent = document.querySelector('#blog-content');
+										blogContent.style.display = 'block';
+
+										// Load the blog content in an iframe
+										const postContent = document.querySelector('#blog-post-content');
+										postContent.innerHTML = `
+												<iframe 
+														src="blog/posts/${blogFile}" 
+														style="width: 100%; height: 80vh; border: none;"
+												></iframe>
+										`;
+
+										// Update URL
+										window.location.hash = 'blog-content';
+								});
+						});
+
+						// Handle back button in blog content
+						document.querySelector('#blog-content .back-button a').addEventListener('click', function(e) {
+								e.preventDefault();
+								
+								// Hide blog content
+								document.querySelector('#blog-content').style.display = 'none';
+								
+								// Show blog list
+								document.querySelector('#blog').style.display = 'block';
+								
+								// Update URL
+								window.location.hash = 'blog';
+						});
+				});
+		</script>
+
+		<!-- Add these styles for blog post display -->
+		<style>
+				.blog-navigation {
+						margin-bottom: 2rem;
+				}
+
+				.blog-content {
+						max-width: 800px;
+						margin: 0 auto;
+						line-height: 1.6;
+				}
+
+				.blog-content h1 {
+						margin-bottom: 2rem;
+				}
+
+				.blog-content h2, .blog-content h3 {
+						margin-top: 2rem;
+						margin-bottom: 1rem;
+				}
+
+				.blog-content ul {
+						margin-left: 1.5rem;
+						margin-bottom: 1.5rem;
+				}
+
+				.blog-content p {
+						margin-bottom: 1.5rem;
+				}
+		</style>
+
+		<!-- Replace the existing close button script with this one -->
+		<script>
+				document.addEventListener('DOMContentLoaded', function() {
+						// Function to set up close button listeners
+						function setupCloseButtons() {
+								document.querySelectorAll('.close').forEach(button => {
+										button.addEventListener('click', function() {
+												// Clear the hash
+												history.pushState("", document.title, window.location.pathname);
+												
+												// Hide all articles
+												document.querySelectorAll('#main article').forEach(article => {
+														article.style.display = 'none';
+												});
+												
+												// Show the header content
+												const header = document.querySelector('#header');
+												if (header) {
+														header.style.display = 'flex';
+														header.style.visibility = 'visible';
+														header.style.opacity = '1';
+												}
+												
+												// Remove article-visible class from body
+												document.body.classList.remove('is-article-visible');
+										});
+								});
+						}
+
+						// Initial setup
+						setupCloseButtons();
+
+						// Set up a mutation observer to watch for DOM changes
+						const observer = new MutationObserver(function(mutations) {
+								mutations.forEach(function(mutation) {
+										if (mutation.addedNodes.length) {
+												setupCloseButtons();
+										}
+								});
+						});
+
+						// Start observing the main content area for changes
+						observer.observe(document.querySelector('#main'), {
+								childList: true,
+								subtree: true
+						});
+				});
+		</script>
+
+		<!-- Add this style section in your head -->
+		<style>
+			.skill-item {
+				margin-bottom: 1.5rem;
+				position: relative;
+			}
+
+			.skill-name {
+				display: block;
+				margin-bottom: 0.5rem;
+				color: #64ffda;
+			}
+
+			.skill-bar {
 				width: 100%;
+				height: 6px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 3px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.skill-progress {
+				width: 0;
 				height: 100%;
-				background: rgba(27, 31, 34, 0.98);
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				z-index: 10000;
-				transition: opacity 0.5s ease-out;
+				background: linear-gradient(90deg, #64ffda, #64ffda);
+				transition: width 1.5s ease-out;
+				position: relative;
 			}
 
-			.loading-spinner {
-				width: 60px;
-				height: 60px;
-				border: 4px solid rgba(255, 255, 255, 0.1);
-				border-left-color: #64ffda;
-				border-radius: 50%;
-				animation: spin 1s linear infinite;
+			.skill-percentage {
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-size: 0.8em;
+				color: rgba(255, 255, 255, 0.5);
 			}
 
-			.loading-text {
-				color: #ffffff;
-				margin-top: 1rem;
-				font-size: 1.2rem;
-				letter-spacing: 0.2rem;
-				animation: pulse 1.5s ease-in-out infinite;
-			}
-
-			.loading.fade-out {
-				opacity: 0;
-				pointer-events: none;
-			}
-
-			@keyframes spin {
-				to { transform: rotate(360deg); }
-			}
-
-			@keyframes pulse {
-				0%, 100% { opacity: 0.5; }
-				50% { opacity: 1; }
+			/* Add animation for skill bars */
+			@keyframes fillBar {
+				from { width: 0; }
+				to { width: var(--progress); }
 			}
 		</style>
 
 		<!-- Add this script before closing body tag -->
 		<script>
-			window.addEventListener('load', function() {
-				const loader = document.querySelector('.loading');
-				loader.classList.add('fade-out');
-				
-				setTimeout(() => {
-					loader.style.display = 'none';
-				}, 500);
-			});
-		</script>
-
-		<!-- Replace the existing blog handling script with this one -->
-		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				// Store original blog content
-				const originalBlogContent = document.querySelector('#blog').innerHTML;
-				
-				// Handle blog post clicks
-				document.querySelectorAll('.blog-post .button').forEach(button => {
-					button.addEventListener('click', async function(e) {
-						e.preventDefault();
-						const postUrl = this.getAttribute('href');
-						const blogPost = this.closest('.blog-post');
-						
-						try {
-							// Show loading state
-							this.innerHTML = '<span>Loading...</span><div class="loading-spinner"></div>';
-							
-							// Fetch markdown content
-							const response = await fetch(postUrl);
-							if (!response.ok) throw new Error('Failed to load post');
-							const content = await response.text();
-							
-							// Update blog article content
-							const blogArticle = document.querySelector('#blog');
-							blogArticle.innerHTML = `
-								<div class="blog-navigation">
-									<a href="#blog" class="button" onclick="return restoreBlogList(event)">← Back to Blog</a>
-								</div>
-								<div class="blog-content">
-									${content}
-								</div>
-							`;
-							
-						} catch (error) {
-							console.error('Error loading blog post:', error);
-							this.innerHTML = 'Error loading post';
-						}
-					});
-				});
-
-				// Add global function to restore blog list
-				window.restoreBlogList = function(e) {
-					e.preventDefault();
-					const blogArticle = document.querySelector('#blog');
-					blogArticle.innerHTML = originalBlogContent;
-					return false;
-				};
-
-				// Handle browser back button
-				window.addEventListener('popstate', function(e) {
-					if (window.location.hash === '#blog') {
-						const blogArticle = document.querySelector('#blog');
-						blogArticle.innerHTML = originalBlogContent;
-					}
-				});
-			});
-		</script>
-
-		<!-- Add these styles for blog post display -->
-		<style>
-			.blog-navigation {
-				margin-bottom: 2rem;
-			}
-
-			.blog-content {
-				max-width: 800px;
-				margin: 0 auto;
-				line-height: 1.6;
-			}
-
-			.blog-content h1 {
-				margin-bottom: 2rem;
-			}
-
-			.blog-content h2, .blog-content h3 {
-				margin-top: 2rem;
-				margin-bottom: 1rem;
-			}
-
-			.blog-content ul {
-				margin-left: 1.5rem;
-				margin-bottom: 1.5rem;
-			}
-
-			.blog-content p {
-				margin-bottom: 1.5rem;
-			}
-		</style>
-
-		<!-- Replace the existing close button script with this one -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				// Function to set up close button listeners
-				function setupCloseButtons() {
-					document.querySelectorAll('.close').forEach(button => {
-						button.addEventListener('click', function() {
-							// Clear the hash
-							history.pushState("", document.title, window.location.pathname);
-							
-							// Hide all articles
-							document.querySelectorAll('#main article').forEach(article => {
-								article.style.display = 'none';
+				// Animate skill bars when they become visible
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const progressBars = entry.target.querySelectorAll('.skill-progress');
+							progressBars.forEach(bar => {
+								const progress = bar.getAttribute('data-progress');
+								bar.style.setProperty('--progress', progress + '%');
+								bar.style.width = progress + '%';
 							});
-							
-							// Show the header content
-							const header = document.querySelector('#header');
-							if (header) {
-								header.style.display = 'flex';
-								header.style.visibility = 'visible';
-								header.style.opacity = '1';
-							}
-							
-							// Remove article-visible class from body
-							document.body.classList.remove('is-article-visible');
-						});
-					});
-				}
-
-				// Initial setup
-				setupCloseButtons();
-
-				// Set up a mutation observer to watch for DOM changes
-				const observer = new MutationObserver(function(mutations) {
-					mutations.forEach(function(mutation) {
-						if (mutation.addedNodes.length) {
-							setupCloseButtons();
 						}
 					});
 				});
 
-				// Start observing the main content area for changes
-				observer.observe(document.querySelector('#main'), {
-					childList: true,
-					subtree: true
+				// Observe skill category sections
+				document.querySelectorAll('.skill-category').forEach(category => {
+					observer.observe(category);
+				});
+			});
+		</script>
+
+		<!-- Update the documentation handling script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Handle project documentation links
+				document.querySelectorAll('[data-doc]').forEach(link => {
+					link.addEventListener('click', function(e) {
+						e.preventDefault();
+						const docFile = this.getAttribute('data-doc');
+						
+						// Hide all articles
+						document.querySelectorAll('#main article').forEach(article => {
+							article.style.display = 'none';
+						});
+
+						// Show project documentation article
+						const projectDocs = document.querySelector('#project-docs');
+						projectDocs.style.display = 'block';
+
+						// Load the documentation content in an iframe
+						const docContent = document.querySelector('#doc-content');
+						docContent.innerHTML = `
+							<iframe 
+								src="projects/docs/${docFile}" 
+								style="width: 100%; height: 80vh; border: none;"
+							></iframe>
+						`;
+
+						// Update URL
+						window.location.hash = 'project-docs';
+					});
+				});
+
+				// Handle back button in project documentation
+				document.querySelector('#project-docs .back-button a').addEventListener('click', function(e) {
+					e.preventDefault();
+					
+					// Hide documentation
+					document.querySelector('#project-docs').style.display = 'none';
+					
+					// Show projects section
+					document.querySelector('#projects').style.display = 'block';
+					
+					// Update URL
+					window.location.hash = 'projects';
 				});
 			});
 		</script>

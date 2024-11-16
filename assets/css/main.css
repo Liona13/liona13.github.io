@@ -1691,3 +1691,46 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* Skill bars styling */
+.skill-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.skill-name {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #64ffda;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #64ffda, #64ffda);
+    transition: width 1.5s ease-out;
+    position: relative;
+}
+
+.skill-percentage {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Add animation for skill bars */
+@keyframes fillBar {
+    from { width: 0; }
+    to { width: var(--progress); }
+}
