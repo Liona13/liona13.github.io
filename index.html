@@ -799,7 +799,6 @@
 		<!-- Add preload for critical resources -->
 		<link rel="preload" href="assets/css/main.css" as="style">
 		<link rel="preload" href="assets/js/main.js" as="script">
-		<link rel="preload" href="images/profile.jpg" as="image">
 
 		<!-- Add loading animation styles -->
 		<style>
@@ -924,7 +923,7 @@
 							</ul>
 							
 							<div class="project-links">
-								<a href="#project-docs" class="button" data-doc="railgun-project.html">View Documentation</a>
+								<a href="projects/docs/railgun-project.html" class="button" onclick="window.location.href=this.href; return false;">View Documentation</a>
 							</div>
 						</div>
 					</div>
@@ -952,7 +951,7 @@
 							</ul>
 							
 							<div class="project-links">
-								<a href="#project-docs" class="button" data-doc="flapping-wing-project.html">View Documentation</a>
+								<a href="projects/docs/flapping-wing-project.html" class="button" onclick="window.location.href=this.href; return false;">View Documentation</a>
 							</div>
 						</div>
 					</div>
@@ -980,7 +979,7 @@
 							</ul>
 							
 							<div class="project-links">
-								<a href="#project-docs" class="button" data-doc="edtech-tools-project.html">View Documentation</a>
+								<a href="projects/docs/edtech-tools-project.html" class="button" onclick="window.location.href=this.href; return false;">View Documentation</a>
 							</div>
 						</div>
 					</div>
@@ -1128,15 +1127,15 @@
 						<div class="fields">
 							<div class="field half">
 								<label for="name">Name</label>
-								<input type="text" name="name" id="name" required />
+								<input type="text" name="name" id="name" autocomplete="name" required />
 							</div>
 							<div class="field half">
 								<label for="email">Email</label>
-								<input type="email" name="email" id="email" required />
+								<input type="email" name="email" id="email" autocomplete="email" required />
 							</div>
 							<div class="field">
 								<label for="message">Message</label>
-								<textarea name="message" id="message" rows="4" required></textarea>
+								<textarea name="message" id="message" rows="4" autocomplete="off" required></textarea>
 							</div>
 						</div>
 						<ul class="actions">
@@ -1174,7 +1173,7 @@
 						<p class="meta">March 19, 2024</p>
 						<p>A comprehensive guide to using Python for data analysis, including key libraries like Pandas, NumPy, and Matplotlib. Learn how to manipulate data, create visualizations, and perform analysis.</p>
 						<ul class="actions">
-							<li><a href="#blog-content" class="button" data-blog="python-data-analysis.html">Read More</a></li>
+							<li><a href="blog/posts/python-data-analysis.html" class="button" onclick="window.location.href=this.href">Read More</a></li>
 						</ul>
 					</div>
 
@@ -1184,7 +1183,7 @@
 						<p class="meta">March 15, 2024</p>
 						<p>Exploring how aerospace engineering principles can enhance STEM education. From flight mechanics to aerodynamics, discover practical applications in teaching.</p>
 						<ul class="actions">
-							<li><a href="#blog-content" class="button" data-blog="aerospace-education.html">Read More</a></li>
+							<li><a href="blog/posts/aerospace-education.html" class="button" onclick="window.location.href=this.href">Read More</a></li>
 						</ul>
 					</div>
 
@@ -1194,7 +1193,7 @@
 						<p class="meta">March 10, 2024</p>
 						<p>Modern approaches to mathematics education using technology and programming. Learn how to make complex concepts more accessible through interactive tools.</p>
 						<ul class="actions">
-							<li><a href="#blog-content" class="button" data-blog="teaching-with-tech.html">Read More</a></li>
+							<li><a href="blog/posts/teaching-with-tech.html" class="button" onclick="window.location.href=this.href">Read More</a></li>
 						</ul>
 					</div>
 				</article>
@@ -1235,28 +1234,61 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				const form = document.querySelector('form[action*="formspree"]');
-				if (form) {  // Check if form exists
-					form.addEventListener('submit', function(e) {
-						const button = form.querySelector('button[type="submit"]');
-						if (button) {  // Check if button exists
-							const buttonText = button.querySelector('span');
-							const originalText = buttonText ? buttonText.textContent : 'Send Message';
-							
-							// Update button text
-							if (buttonText) buttonText.textContent = 'Sending...';
-							if (button) button.disabled = true;
+				// Wait for the entire window to load
+				window.addEventListener('load', function() {
+						// Form handling
+						const form = document.querySelector('form[action*="formspree"]');
+						if (form) {  // Check if form exists before adding listener
+								form.addEventListener('submit', function(e) {
+										const button = form.querySelector('button[type="submit"]');
+										if (button) {  // Check if button exists
+												const buttonText = button.querySelector('span');
+												if (buttonText) {  // Check if span exists
+														const originalText = buttonText.textContent;
+														buttonText.textContent = 'Sending...';
+														button.disabled = true;
 
-							// Re-enable button after 2 seconds
-							setTimeout(() => {
-								if (buttonText) buttonText.textContent = originalText;
-								if (button) button.disabled = false;
-							}, 2000);
+														setTimeout(() => {
+																buttonText.textContent = originalText;
+																button.disabled = false;
+														}, 2000);
+												}
+										}
+								});
 						}
-					});
-				}
-			});
+
+						// Blog post links
+						const blogLinks = document.querySelectorAll('a[href*="blog/posts/"]');
+						if (blogLinks) {
+								blogLinks.forEach(link => {
+										if (link) {  // Add null check for each link
+												link.addEventListener('click', function(e) {
+														e.preventDefault();
+														const blogFile = this.getAttribute('href');
+														if (blogFile) {
+																window.location.href = blogFile;
+														}
+												});
+										}
+								});
+						}
+
+						// Project documentation links
+						const docLinks = document.querySelectorAll('a[href*="projects/docs/"]');
+						if (docLinks) {
+								docLinks.forEach(link => {
+										if (link) {  // Add null check for each link
+												link.addEventListener('click', function(e) {
+														e.preventDefault();
+														const docFile = this.getAttribute('href');
+														if (docFile) {
+																window.location.href = docFile;
+														}
+												});
+										}
+								});
+						}
+				});
 		</script>
 
 		<!-- Add this before closing body tag, replacing the existing dark mode script -->
@@ -1314,54 +1346,22 @@
 		<!-- Replace the existing navigation script with this one -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				// Get all articles and hide them initially
-				const articles = document.querySelectorAll('#main article');
-				articles.forEach(article => {
-						article.style.display = 'none';
-				});
-
-				// Show initial article
-				const initialHash = window.location.hash || '#about';
-				const initialArticle = document.querySelector(initialHash);
-				if (initialArticle) {
-						initialArticle.style.display = 'block';
-				}
-
 				// Handle navigation clicks
 				document.querySelectorAll('nav a').forEach(link => {
-						link.addEventListener('click', function(e) {
-								e.preventDefault();
-								
-								// Get target article
-								const targetId = this.getAttribute('href');
-								const targetArticle = document.querySelector(targetId);
-								
-								if (targetArticle) {
-										// Hide all articles first
-										articles.forEach(article => {
-												article.style.display = 'none';
-										});
-
-										// Show target article immediately
-										targetArticle.style.display = 'block';
-										
-										// Update URL
-										window.location.hash = targetId;
-								}
-						});
-				});
-
-				// Handle direct URL navigation
-				window.addEventListener('hashchange', function() {
-						const hash = window.location.hash;
-						const targetArticle = document.querySelector(hash);
-						
-						if (targetArticle) {
-								articles.forEach(article => {
-										article.style.display = 'none';
+					link.addEventListener('click', function(e) {
+						e.preventDefault();
+						const targetId = this.getAttribute('href');
+						if (targetId && targetId !== '#') {
+							const targetArticle = document.querySelector(targetId);
+							if (targetArticle) {
+								document.querySelectorAll('#main article').forEach(article => {
+									article.style.display = 'none';
 								});
 								targetArticle.style.display = 'block';
+								window.location.hash = targetId;
+							}
 						}
+					});
 				});
 			});
 		</script>
@@ -1458,51 +1458,33 @@
 		<!-- Replace the existing blog handling script with this one -->
 		<script>
 				document.addEventListener('DOMContentLoaded', function() {
-						// Handle blog post links
-						const blogLinks = document.querySelectorAll('[data-blog]');
-						const blogContent = document.querySelector('#blog-content');
-						const blogList = document.querySelector('#blog');
-						
-						if (blogLinks && blogContent && blogList) {
+						// Blog post links
+						const blogLinks = document.querySelectorAll('a[href*="blog/posts/"]');
+						if (blogLinks) {
 								blogLinks.forEach(link => {
 										link.addEventListener('click', function(e) {
 												e.preventDefault();
-												const blogFile = this.getAttribute('data-blog');
-												
-												// Hide all articles
-												document.querySelectorAll('#main article').forEach(article => {
-														article.style.display = 'none';
-												});
-
-												// Show blog content
-												blogContent.style.display = 'block';
-												
-												// Load content
-												const postContent = document.querySelector('#blog-post-content');
-												if (postContent) {
-														postContent.innerHTML = `
-																<iframe 
-																		src="blog/posts/${blogFile}" 
-																		style="width: 100%; height: 80vh; border: none;"
-																></iframe>
-														`;
+												const blogFile = this.getAttribute('href');
+												if (blogFile) {
+														window.location.href = blogFile;
 												}
-
-												// Update URL
-												window.location.hash = 'blog-content';
 										});
-								}
+								});
+						}
 
-								// Handle back button
-								const backButton = document.querySelector('#blog-content .back-button a');
-								if (backButton && blogContent && blogList) {
-										backButton.addEventListener('click', function(e) {
+						// Project documentation links
+						const docLinks = document.querySelectorAll('a[href*="projects/docs/"]');
+						if (docLinks) {
+								docLinks.forEach(link => {
+										link.addEventListener('click', function(e) {
 												e.preventDefault();
-												blogContent.style.display = 'none';
-												blogList.style.display = 'block';
-												window.location.hash = 'blog';
+												const docFile = this.getAttribute('href');
+												if (docFile) {
+														window.location.href = docFile;
+												}
 										});
-								}
+								});
+						}
 				});
 		</script>
 

@@ -6,50 +6,123 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="../../assets/css/main.css" />
         <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+        
+        <style>
+            .blog-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            .blog-content h1 {
+                color: #64ffda;
+                margin-bottom: 2rem;
+            }
+
+            .blog-content h2 {
+                color: #ffffff;
+                margin-top: 2rem;
+            }
+
+            .blog-content h3 {
+                margin-top: 1.5rem;
+            }
+
+            .blog-content p {
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .blog-content ul {
+                margin-left: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .back-button {
+                margin-bottom: 2rem;
+            }
+
+            /* Code block styling */
+            pre {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 1rem;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+
+            code {
+                font-family: 'Courier New', monospace;
+                color: #64ffda;
+            }
+        </style>
     </head>
     <body class="is-preload">
         <div id="wrapper">
-            <article class="blog-post-content">
-                <h1>Python for Data Analysis: A Comprehensive Guide</h1>
-                <div class="meta">March 19, 2024</div>
-                
-                <div class="content">
-                    <p>As an aerospace engineer turned educator, I've found Python to be an invaluable tool for both technical analysis and teaching. Here's my comprehensive guide to getting started with data analysis using Python.</p>
-
-                    <h2>Essential Libraries for Data Analysis</h2>
-                    
-                    <h3>1. Pandas</h3>
-                    <ul>
-                        <li>Data manipulation and analysis</li>
-                        <li>Working with structured data</li>
-                        <li>Handling CSV, Excel, and databases</li>
-                    </ul>
-
-                    <!-- Add code examples with syntax highlighting -->
-                    <pre><code class="language-python">
-import pandas as pd
-import numpy as np
-
-# Load data
-data = pd.read_csv('example.csv')
-# Analyze data
-results = data.groupby('category').mean()
-                    </code></pre>
-
-                    <!-- Add more sections -->
-                </div>
-
-                <div class="blog-navigation">
+            <div class="blog-content">
+                <div class="back-button">
                     <a href="../../index.html#blog" class="button">← Back to Blog</a>
                 </div>
-            </article>
-        </div>
 
-        <!-- Scripts -->
-        <script src="../../assets/js/jquery.min.js"></script>
-        <script src="../../assets/js/browser.min.js"></script>
-        <script src="../../assets/js/breakpoints.min.js"></script>
-        <script src="../../assets/js/util.js"></script>
-        <script src="../../assets/js/main.js"></script>
+                <h1>Python for Data Analysis: A Comprehensive Guide</h1>
+                
+                <p>As an aerospace engineer turned educator, I've found Python to be an invaluable tool for both technical analysis and teaching. Here's my comprehensive guide to getting started with data analysis using Python.</p>
+
+                <h2>Essential Libraries for Data Analysis</h2>
+                
+                <h3>1. Pandas</h3>
+                <ul>
+                    <li>Data manipulation and analysis</li>
+                    <li>Working with structured data</li>
+                    <li>Handling CSV, Excel, and databases</li>
+                </ul>
+
+                <h3>2. NumPy</h3>
+                <ul>
+                    <li>Numerical operations</li>
+                    <li>Array manipulation</li>
+                    <li>Mathematical functions</li>
+                </ul>
+
+                <h3>3. Matplotlib/Seaborn</h3>
+                <ul>
+                    <li>Data visualization</li>
+                    <li>Creating professional plots</li>
+                    <li>Statistical graphics</li>
+                </ul>
+
+                <h2>Real-World Applications</h2>
+                
+                <h3>Educational Data Analysis</h3>
+                <ul>
+                    <li>Student performance tracking</li>
+                    <li>Learning pattern identification</li>
+                    <li>Progress visualization</li>
+                </ul>
+
+                <h3>Technical Data Processing</h3>
+                <ul>
+                    <li>Flight data analysis</li>
+                    <li>Aerodynamic calculations</li>
+                    <li>Performance metrics</li>
+                </ul>
+
+                <h2>Code Example</h2>
+                <pre><code>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load and analyze data
+data = pd.read_csv('student_data.csv')
+performance = data.groupby('subject')['score'].mean()
+
+# Create visualization
+plt.figure(figsize=(10, 6))
+performance.plot(kind='bar')
+plt.title('Average Student Performance by Subject')
+plt.show()
+                </code></pre>
+            </div>
+        </div>
     </body>
 </html> 
