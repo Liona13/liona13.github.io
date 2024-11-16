@@ -205,40 +205,34 @@
 			/* Dark mode toggle button styles */
 			#dark-mode-toggle {
 				position: fixed;
-				top: 1rem;
-				right: 1rem;
-				width: 2.5rem;
-				height: 2.5rem;
+				top: 20px;          /* Adjust position */
+				right: 20px;        /* Adjust position */
+				width: 40px;        /* Adjust size */
+				height: 40px;       /* Adjust size */
 				border: 1px solid var(--border-color);
 				border-radius: 50%;
-				background: transparent;
+				background: rgba(27, 31, 34, 0.8);  /* Add background */
 				cursor: pointer;
 				z-index: 10000;
-				padding: 0.5rem;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				padding: 8px;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.2);  /* Add shadow */
 			}
 
 			/* Moon icon styles */
 			#dark-mode-toggle .cs-moon {
-				width: 1.5rem;
-				height: 1.5rem;
-				fill: var(--text-color);
-				display: block;
-				transition: all 0.3s ease;
+				width: 20px;        /* Adjust size */
+				height: 20px;       /* Adjust size */
+				fill: #ffffff;      /* Set color */
 			}
 
 			/* Sun icon styles */
 			#dark-mode-toggle .cs-sun {
-				width: 1.5rem;
-				height: 1.5rem;
+				width: 20px;        /* Adjust size */
+				height: 20px;       /* Adjust size */
 				display: none;
-				transition: all 0.3s ease;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
 			}
 
 			/* Icon states based on theme */
@@ -1247,23 +1241,26 @@
 		<script src="assets/js/main.js"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				const form = document.querySelector('form');
-				
-				form.addEventListener('submit', function(e) {
-					const button = form.querySelector('button[type="submit"]');
-					const buttonText = button.querySelector('span');
-					const originalText = buttonText.textContent;
-					
-					// Update button text
-					buttonText.textContent = 'Sending...';
-					button.disabled = true;
+				const form = document.querySelector('form[action*="formspree"]');
+				if (form) {  // Check if form exists
+					form.addEventListener('submit', function(e) {
+						const button = form.querySelector('button[type="submit"]');
+						if (button) {  // Check if button exists
+							const buttonText = button.querySelector('span');
+							const originalText = buttonText ? buttonText.textContent : 'Send Message';
+							
+							// Update button text
+							if (buttonText) buttonText.textContent = 'Sending...';
+							if (button) button.disabled = true;
 
-					// Re-enable button after 2 seconds (after form submission)
-					setTimeout(() => {
-						buttonText.textContent = originalText;
-						button.disabled = false;
-					}, 2000);
-				});
+							// Re-enable button after 2 seconds
+							setTimeout(() => {
+								if (buttonText) buttonText.textContent = originalText;
+								if (button) button.disabled = false;
+							}, 2000);
+						}
+					});
+				}
 			});
 		</script>
 
@@ -1467,47 +1464,50 @@
 		<script>
 				document.addEventListener('DOMContentLoaded', function() {
 						// Handle blog post links
-						document.querySelectorAll('[data-blog]').forEach(link => {
-								link.addEventListener('click', function(e) {
-										e.preventDefault();
-										const blogFile = this.getAttribute('data-blog');
-										
-										// Hide all articles
-										document.querySelectorAll('#main article').forEach(article => {
-												article.style.display = 'none';
+						const blogLinks = document.querySelectorAll('[data-blog]');
+						const blogContent = document.querySelector('#blog-content');
+						const blogList = document.querySelector('#blog');
+						
+						if (blogLinks && blogContent && blogList) {
+								blogLinks.forEach(link => {
+										link.addEventListener('click', function(e) {
+												e.preventDefault();
+												const blogFile = this.getAttribute('data-blog');
+												
+												// Hide all articles
+												document.querySelectorAll('#main article').forEach(article => {
+														article.style.display = 'none';
+												});
+
+												// Show blog content
+												blogContent.style.display = 'block';
+												
+												// Load content
+												const postContent = document.querySelector('#blog-post-content');
+												if (postContent) {
+														postContent.innerHTML = `
+																<iframe 
+																		src="blog/posts/${blogFile}" 
+																		style="width: 100%; height: 80vh; border: none;"
+																></iframe>
+														`;
+												}
+
+												// Update URL
+												window.location.hash = 'blog-content';
 										});
+								}
 
-										// Show blog content article
-										const blogContent = document.querySelector('#blog-content');
-										blogContent.style.display = 'block';
-
-										// Load the blog content in an iframe
-										const postContent = document.querySelector('#blog-post-content');
-										postContent.innerHTML = `
-												<iframe 
-														src="blog/posts/${blogFile}" 
-														style="width: 100%; height: 80vh; border: none;"
-												></iframe>
-										`;
-
-										// Update URL
-										window.location.hash = 'blog-content';
-								});
-						});
-
-						// Handle back button in blog content
-						document.querySelector('#blog-content .back-button a').addEventListener('click', function(e) {
-								e.preventDefault();
-								
-								// Hide blog content
-								document.querySelector('#blog-content').style.display = 'none';
-								
-								// Show blog list
-								document.querySelector('#blog').style.display = 'block';
-								
-								// Update URL
-								window.location.hash = 'blog';
-						});
+								// Handle back button
+								const backButton = document.querySelector('#blog-content .back-button a');
+								if (backButton && blogContent && blogList) {
+										backButton.addEventListener('click', function(e) {
+												e.preventDefault();
+												blogContent.style.display = 'none';
+												blogList.style.display = 'block';
+												window.location.hash = 'blog';
+										});
+								}
 				});
 		</script>
 
