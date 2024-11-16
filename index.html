@@ -188,10 +188,18 @@
 		<style>
 			/* Dark mode variables */
 			:root {
-				--dark-bg: #121212;
-				--dark-surface: rgba(255, 255, 255, 0.05);
-				--dark-text: #ffffff;
-				--dark-accent: rgba(255, 255, 255, 0.1);
+				color-scheme: light dark;
+				--bg-color: #ffffff;
+				--text-color: #1b1f22;
+				--surface-color: rgba(27, 31, 34, 0.85);
+				--border-color: #ffffff;
+			}
+
+			[data-theme="dark"] {
+				--bg-color: #1b1f22;
+				--text-color: #ffffff;
+				--surface-color: rgba(255, 255, 255, 0.05);
+				--border-color: rgba(255, 255, 255, 0.5);
 			}
 
 			/* Dark mode toggle button styles */
@@ -201,54 +209,71 @@
 				right: 1rem;
 				width: 2.5rem;
 				height: 2.5rem;
-				border: 1px solid rgba(255, 255, 255, 0.2);
+				border: 1px solid var(--border-color);
 				border-radius: 50%;
 				background: transparent;
 				cursor: pointer;
 				z-index: 10000;
 				padding: 0.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
+			/* Moon icon styles */
 			#dark-mode-toggle .cs-moon {
-				fill: #ffffff;
-				width: 100%;
-				height: 100%;
+				width: 1.5rem;
+				height: 1.5rem;
+				fill: var(--text-color);
+				display: block;
+				transition: all 0.3s ease;
+			}
+
+			/* Sun icon styles */
+			#dark-mode-toggle .cs-sun {
+				width: 1.5rem;
+				height: 1.5rem;
+				display: none;
+				transition: all 0.3s ease;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			/* Icon states based on theme */
+			[data-theme="dark"] #dark-mode-toggle .cs-moon {
+				display: none;
+			}
+
+			[data-theme="dark"] #dark-mode-toggle .cs-sun {
 				display: block;
 			}
 
-			#dark-mode-toggle .cs-sun {
-				display: none;
-				width: 100%;
-				height: 100%;
+			/* Theme-specific styles */
+			[data-theme="dark"] body {
+				background-color: var(--bg-color);
+				color: var(--text-color);
 			}
 
-			/* Dark mode styles */
-			body.dark-mode {
-				background-color: var(--dark-bg) !important;
-				color: var(--dark-text) !important;
+			[data-theme="dark"] #main article {
+				background-color: var(--surface-color);
 			}
 
-			body.dark-mode #main article {
-				background-color: var(--dark-surface) !important;
+			[data-theme="dark"] .button {
+				border-color: var(--border-color);
 			}
 
-			body.dark-mode .button {
-				border-color: var(--dark-text) !important;
+			[data-theme="dark"] input, 
+			[data-theme="dark"] textarea {
+				background-color: var(--surface-color);
+				border-color: var(--border-color);
+				color: var(--text-color);
 			}
 
-			body.dark-mode input, 
-			body.dark-mode textarea {
-				background-color: var(--dark-surface) !important;
-				border-color: var(--dark-accent) !important;
-				color: var(--dark-text) !important;
-			}
-
-			body.dark-mode #header nav ul {
-				border-color: var(--dark-accent) !important;
-			}
-
-			body.dark-mode #header nav ul li {
-				border-color: var(--dark-accent) !important;
+			[data-theme="dark"] #header nav ul,
+			[data-theme="dark"] #header nav ul li {
+				border-color: var(--border-color);
 			}
 		</style>
 
@@ -635,9 +660,11 @@
 		<!-- Add this before closing body tag, replacing the existing dark mode script -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
+				const html = document.documentElement;
+				
 				// Dark mode functions
 				function enableDarkMode() {
-					document.body.classList.add('dark-mode');
+					html.setAttribute('data-theme', 'dark');
 					localStorage.setItem('theme', 'dark');
 					
 					// Update button icons
@@ -646,7 +673,7 @@
 				}
 
 				function disableDarkMode() {
-					document.body.classList.remove('dark-mode');
+					html.setAttribute('data-theme', 'light');
 					localStorage.setItem('theme', 'light');
 					
 					// Update button icons
@@ -656,12 +683,13 @@
 
 				// Check user preference
 				function detectColorScheme() {
-					if (localStorage.getItem('theme')) {
-						if (localStorage.getItem('theme') === 'dark') {
-							enableDarkMode();
-						}
+					const theme = localStorage.getItem('theme');
+					if (theme) {
+						theme === 'dark' ? enableDarkMode() : disableDarkMode();
 					} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 						enableDarkMode();
+					} else {
+						disableDarkMode();
 					}
 				}
 
@@ -672,13 +700,12 @@
 				const darkModeToggle = document.getElementById('dark-mode-toggle');
 				if (darkModeToggle) {
 					darkModeToggle.addEventListener('click', () => {
-						if (document.body.classList.contains('dark-mode')) {
-							disableDarkMode();
-						} else {
-							enableDarkMode();
-						}
+						html.getAttribute('data-theme') === 'dark' ? disableDarkMode() : enableDarkMode();
 					});
 				}
+
+				// Listen for system theme changes
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', detectColorScheme);
 			});
 		</script>
 
