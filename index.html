@@ -6,6 +6,50 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<!-- Updated image styles for head and shoulders framing -->
+		<style>
+			/* Override profile image styles with maximum specificity */
+			html body #wrapper #main article .image.main {
+				width: 100px !important;              /* Reduced width */
+				max-width: 100px !important;
+				height: 130px !important;            /* Adjusted height for head/shoulders */
+				margin: 1.5rem auto !important;
+				display: block !important;
+				position: relative !important;
+			}
+
+			html body #wrapper #main article .image.main img {
+				width: 100px !important;              /* Reduced width */
+				height: 130px !important;            /* Adjusted height */
+				max-width: 100px !important;
+				max-height: 130px !important;
+				margin: 0 !important;
+				display: block !important;
+				border-radius: 50px/65px !important; /* Adjusted for new dimensions */
+				object-fit: cover !important;
+				object-position: center 20% !important; /* Adjusted to focus on head/shoulders */
+				border: 2px solid rgba(255, 255, 255, 0.2) !important;
+				box-shadow: 0 8px 16px rgba(0,0,0,0.3) !important;
+				transform: none !important;
+				transition: all 0.3s ease !important;
+			}
+
+			/* Rest of the styles remain the same */
+			html body #wrapper #main article .image.main img:hover {
+				transform: scale(1.05) !important;
+				box-shadow: 0 12px 24px rgba(0,0,0,0.4) !important;
+				border-color: rgba(255, 255, 255, 0.3) !important;
+			}
+
+			html body #wrapper #main article .image.main:before,
+			html body #wrapper #main article .image.main:after {
+				display: none !important;
+				background: none !important;
+				opacity: 0 !important;
+				content: none !important;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -40,7 +84,13 @@
 				<!-- About -->
 				<article id="about">
 					<h2 class="major">About</h2>
-					<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+					<span class="image main" style="width: 120px !important; max-width: 120px !important; margin: 1rem auto !important; display: block !important;">
+						<img 
+							src="images/profile.jpg" 
+							alt="Anil Gupta" 
+							style="width: 120px !important; height: 120px !important; object-fit: cover !important; border-radius: 50% !important; margin: 0 !important;"
+						/>
+					</span>
 					<p>As an educator with a Bachelor's degree in Aerospace Engineering and six years of teaching experience, 
 					I bring a unique combination of technical knowledge and communication skills to every project.</p>
 					<p>Currently based in Chiang Mai, Thailand, I'm expanding my expertise in Python programming and data analysis
@@ -52,26 +102,50 @@
 				<!-- Projects -->
 				<article id="projects">
 					<h2 class="major">Projects</h2>
-					<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 					<div class="project-item">
-						<h3>Rail-Gun Assisted Orbital Launch</h3>
-						<p>Engineering project focused on innovative launch systems (2018)</p>
-						<ul>
-							<li>Developed conceptual design for hybrid launch system</li>
-							<li>Conducted feasibility analysis</li>
-							<li>Created technical documentation</li>
-						</ul>
-						<a href="#" class="button">View Details</a>
+						<h3>Rail-Gun Assisted Orbital Launch System (University Project, 2018)</h3>
+						<p>Final year engineering project focused on innovative space launch technology.</p>
+						<div class="project-details">
+							<h4>Project Overview:</h4>
+							<p>Developed a conceptual design for a hybrid launch system combining electromagnetic rail-gun technology 
+							with traditional rocket propulsion to reduce launch costs and improve efficiency.</p>
+							
+							<h4>Key Contributions:</h4>
+							<ul>
+								<li>Conducted theoretical analysis of electromagnetic acceleration systems</li>
+								<li>Calculated potential cost savings and efficiency improvements</li>
+								<li>Developed mathematical models for trajectory optimization</li>
+								<li>Created comprehensive project documentation and presentations</li>
+							</ul>
+						</div>
 					</div>
+
 					<div class="project-item">
-						<h3>Flapping Wing Micro-Aerial Vehicle</h3>
-						<p>Fabrication and design project (2016)</p>
+						<h3>Flapping Wing Micro-Aerial Vehicle (University Project, 2016)</h3>
+						<p>Design and fabrication project exploring bio-inspired flight mechanisms.</p>
+						<div class="project-details">
+							<h4>Project Overview:</h4>
+							<p>Researched and developed a small-scale flying device inspired by bird wing mechanics, 
+							focusing on efficient flight characteristics for surveillance applications.</p>
+							
+							<h4>Key Achievements:</h4>
+							<ul>
+								<li>Analyzed bird flight mechanics and wing design principles</li>
+								<li>Created design specifications and technical drawings</li>
+								<li>Developed prototype using available materials</li>
+								<li>Conducted basic aerodynamic analysis</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="project-item">
+						<h3>Current Projects</h3>
+						<p>Currently developing:</p>
 						<ul>
-							<li>Designed and fabricated prototype</li>
-							<li>Conducted performance analysis</li>
-							<li>Led team documentation efforts</li>
+							<li>Python-based data analysis tools</li>
+							<li>Automation scripts for educational applications</li>
+							<li>Personal portfolio website (This site)</li>
 						</ul>
-						<a href="#" class="button">View Details</a>
 					</div>
 				</article>
 
@@ -117,12 +191,19 @@
 							<li>Developed and delivered comprehensive mathematics curriculum</li>
 							<li>Mentored students in technical subjects</li>
 							<li>Created innovative teaching materials</li>
+							<li>Integrated technology into classroom instruction</li>
+							<li>Provided one-on-one tutoring in mathematics and physics</li>
 						</ul>
 					</div>
 					<div class="experience-item">
 						<h3>Education</h3>
 						<p>Bachelor of Technology - Aerospace Engineering</p>
 						<p>Hindustan University, 2018</p>
+						<ul>
+							<li>Specialized in aerodynamics and flight mechanics</li>
+							<li>Completed major projects in launch systems and aerial vehicles</li>
+							<li>Participated in technical competitions and workshops</li>
+						</ul>
 					</div>
 				</article>
 
