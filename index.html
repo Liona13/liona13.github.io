@@ -205,37 +205,31 @@
 			/* Dark mode toggle button styles */
 			#dark-mode-toggle {
 				position: fixed;
-				top: 20px;          /* Adjust position */
-				right: 20px;        /* Adjust position */
-				width: 40px;        /* Adjust size */
-				height: 40px;       /* Adjust size */
+				top: 20px;
+				right: 20px;
+				z-index: 10000;
+				background: transparent;
 				border: 1px solid var(--border-color);
 				border-radius: 50%;
-				background: rgba(27, 31, 34, 0.8);  /* Add background */
+				width: 40px;
+				height: 40px;
 				cursor: pointer;
-				z-index: 10000;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				padding: 8px;
-				box-shadow: 0 2px 5px rgba(0,0,0,0.2);  /* Add shadow */
 			}
 
-			/* Moon icon styles */
+			/* Dark mode toggle icons */
 			#dark-mode-toggle .cs-moon {
-				width: 20px;        /* Adjust size */
-				height: 20px;       /* Adjust size */
-				fill: #ffffff;      /* Set color */
+				display: block;
+				fill: #ffffff;
 			}
 
-			/* Sun icon styles */
 			#dark-mode-toggle .cs-sun {
-				width: 20px;        /* Adjust size */
-				height: 20px;       /* Adjust size */
 				display: none;
 			}
 
-			/* Icon states based on theme */
 			[data-theme="dark"] #dark-mode-toggle .cs-moon {
 				display: none;
 			}
@@ -1213,8 +1207,9 @@
 					<div id="blog-post-content"></div>
 				</article>
 
-				<!-- Add this after your existing articles -->
+				<!-- Add this article for project documentation -->
 				<article id="project-docs" style="display: none;">
+					<h2 class="major">Project Documentation</h2>
 					<div class="back-button">
 						<a href="#projects" class="button">← Back to Projects</a>
 					</div>
