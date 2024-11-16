@@ -1219,6 +1219,14 @@
 					<div id="blog-post-content"></div>
 				</article>
 
+				<!-- Add this after your existing articles -->
+				<article id="project-docs" style="display: none;">
+					<div class="back-button">
+						<a href="#projects" class="button">← Back to Projects</a>
+					</div>
+					<div id="doc-content"></div>
+				</article>
+
 			</div>
 
 			<!-- Footer -->
@@ -1657,30 +1665,37 @@
 			document.addEventListener('DOMContentLoaded', function() {
 				// Handle project documentation links
 				document.querySelectorAll('[data-doc]').forEach(link => {
-					link.addEventListener('click', function(e) {
+					link.addEventListener('click', async function(e) {
 						e.preventDefault();
 						const docFile = this.getAttribute('data-doc');
 						
-						// Hide all articles
-						document.querySelectorAll('#main article').forEach(article => {
-							article.style.display = 'none';
-						});
+						try {
+							// Show loading state
+							const docContent = document.querySelector('#doc-content');
+							docContent.innerHTML = '<div class="loading-spinner"></div>';
+							
+							// Load documentation content
+							const response = await fetch(`projects/docs/${docFile}`);
+							if (!response.ok) throw new Error('Failed to load documentation');
+							const content = await response.text();
+							
+							// Hide all articles
+							document.querySelectorAll('#main article').forEach(article => {
+								article.style.display = 'none';
+							});
 
-						// Show project documentation article
-						const projectDocs = document.querySelector('#project-docs');
-						projectDocs.style.display = 'block';
-
-						// Load the documentation content in an iframe
-						const docContent = document.querySelector('#doc-content');
-						docContent.innerHTML = `
-							<iframe 
-								src="projects/docs/${docFile}" 
-								style="width: 100%; height: 80vh; border: none;"
-							></iframe>
-						`;
-
-						// Update URL
-						window.location.hash = 'project-docs';
+							// Show documentation article and update content
+							const projectDocs = document.querySelector('#project-docs');
+							projectDocs.style.display = 'block';
+							docContent.innerHTML = content;
+							
+							// Update URL
+							window.location.hash = 'project-docs';
+							
+						} catch (error) {
+							console.error('Error loading documentation:', error);
+							docContent.innerHTML = 'Error loading documentation. Please try again.';
+						}
 					});
 				});
 
