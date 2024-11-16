@@ -189,61 +189,66 @@
 			/* Dark mode variables */
 			:root {
 				--dark-bg: #121212;
-				--dark-surface: #1e1e1e;
+				--dark-surface: rgba(255, 255, 255, 0.05);
 				--dark-text: #ffffff;
 				--dark-accent: rgba(255, 255, 255, 0.1);
 			}
 
 			/* Dark mode toggle button styles */
 			#dark-mode-toggle {
-				position: absolute;
+				position: fixed;
 				top: 1rem;
 				right: 1rem;
 				width: 2.5rem;
 				height: 2.5rem;
-				border: none;
+				border: 1px solid rgba(255, 255, 255, 0.2);
 				border-radius: 50%;
 				background: transparent;
 				cursor: pointer;
-				overflow: hidden;
-				padding: 0;
+				z-index: 10000;
+				padding: 0.5rem;
 			}
 
 			#dark-mode-toggle .cs-moon {
 				fill: #ffffff;
-				width: 1.25rem;
-				height: 1.25rem;
-				transition: transform 0.3s ease;
+				width: 100%;
+				height: 100%;
+				display: block;
 			}
 
 			#dark-mode-toggle .cs-sun {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, 100%);
-				opacity: 0;
-				transition: transform 0.3s ease, opacity 0.3s ease;
+				display: none;
+				width: 100%;
+				height: 100%;
 			}
 
 			/* Dark mode styles */
 			body.dark-mode {
-				background-color: var(--dark-bg);
-				color: var(--dark-text);
+				background-color: var(--dark-bg) !important;
+				color: var(--dark-text) !important;
 			}
 
 			body.dark-mode #main article {
-				background-color: var(--dark-surface);
+				background-color: var(--dark-surface) !important;
 			}
 
 			body.dark-mode .button {
-				border-color: var(--dark-text);
+				border-color: var(--dark-text) !important;
 			}
 
 			body.dark-mode input, 
 			body.dark-mode textarea {
-				background-color: var(--dark-surface);
-				border-color: var(--dark-accent);
-				color: var(--dark-text);
+				background-color: var(--dark-surface) !important;
+				border-color: var(--dark-accent) !important;
+				color: var(--dark-text) !important;
+			}
+
+			body.dark-mode #header nav ul {
+				border-color: var(--dark-accent) !important;
+			}
+
+			body.dark-mode #header nav ul li {
+				border-color: var(--dark-accent) !important;
 			}
 		</style>
 
@@ -498,10 +503,10 @@
 						</ul>
 					</section>
 
-					<!-- Download Resume -->
+					<!-- Resume section - update the download button -->
 					<div class="resume-actions">
 						<ul class="actions">
-							<li><a href="#" class="button primary">Download PDF Resume</a></li>
+							<li><a href="assets/docs/Anil-Gupta-Resume.pdf" class="button primary" download>Download PDF Resume</a></li>
 						</ul>
 					</div>
 				</article>
@@ -627,39 +632,52 @@
 			});
 		</script>
 
-		<!-- Add this before closing body tag -->
+		<!-- Add this before closing body tag, replacing the existing dark mode script -->
 		<script>
-			// Dark mode functions
-			function enableDarkMode() {
-				document.body.classList.add('dark-mode');
-				localStorage.setItem('theme', 'dark');
-			}
+			document.addEventListener('DOMContentLoaded', function() {
+				// Dark mode functions
+				function enableDarkMode() {
+					document.body.classList.add('dark-mode');
+					localStorage.setItem('theme', 'dark');
+					
+					// Update button icons
+					document.querySelector('.cs-moon').style.display = 'none';
+					document.querySelector('.cs-sun').style.display = 'block';
+				}
 
-			function disableDarkMode() {
-				document.body.classList.remove('dark-mode');
-				localStorage.setItem('theme', 'light');
-			}
+				function disableDarkMode() {
+					document.body.classList.remove('dark-mode');
+					localStorage.setItem('theme', 'light');
+					
+					// Update button icons
+					document.querySelector('.cs-moon').style.display = 'block';
+					document.querySelector('.cs-sun').style.display = 'none';
+				}
 
-			// Check user preference
-			function detectColorScheme() {
-				if (localStorage.getItem('theme')) {
-					if (localStorage.getItem('theme') === 'dark') {
+				// Check user preference
+				function detectColorScheme() {
+					if (localStorage.getItem('theme')) {
+						if (localStorage.getItem('theme') === 'dark') {
+							enableDarkMode();
+						}
+					} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 						enableDarkMode();
 					}
-				} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					enableDarkMode();
 				}
-			}
 
-			// Run on page load
-			detectColorScheme();
+				// Run on page load
+				detectColorScheme();
 
-			// Toggle button event listener
-			document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-				if (document.body.classList.contains('dark-mode')) {
-					disableDarkMode();
-				} else {
-					enableDarkMode();
+				// Toggle button event listener
+				const darkModeToggle = document.getElementById('dark-mode-toggle');
+				if (darkModeToggle) {
+					darkModeToggle.addEventListener('click', () => {
+						if (document.body.classList.contains('dark-mode')) {
+							disableDarkMode();
+						} else {
+							enableDarkMode();
+						}
+					});
 				}
 			});
 		</script>
